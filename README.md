@@ -1,5 +1,15 @@
 # 🦞 OpenClaw — Personal AI Assistant
 
+> [!IMPORTANT]
+> **🌑 OMEGA Enhanced Fork** | This is a community-maintained fork with critical fixes and enhancements:
+>
+> - ✅ **Circular Dependency Resolution**: Fixed ESM deadlocks in `entry.ts`, `startup.ts`, and barrel files
+> - ✅ **OMEGA Protocol Integration**: Traditional Chinese persona with enhanced system prompts
+> - ✅ **Telegram Fast Track**: Streamlined bot configuration and deployment
+> - 📚 **Documentation**: Added Traditional Chinese guides and troubleshooting protocols
+>
+> **Upstream**: [openclaw/openclaw](https://github.com/openclaw/openclaw) | **Maintainer**: [@ai19760101-spec](https://github.com/ai19760101-spec)
+
 <p align="center">
     <picture>
         <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/openclaw-logo-text-dark.png">
