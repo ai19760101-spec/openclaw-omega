@@ -1,4 +1,5 @@
 import { DisconnectReason } from "@whiskeysockets/baileys";
+import fs from "node:fs";
 import { randomUUID } from "node:crypto";
 import { loadConfig } from "../config/config.js";
 import { danger, info, success } from "../globals.js";
@@ -203,6 +204,12 @@ export async function startWebLoginWithQr(
     return {
       message: `Failed to get QR: ${String(err)}`,
     };
+  }
+
+  try {
+    fs.writeFileSync("C:/tmp/openclaw-qr-code.txt", qr);
+  } catch (e) {
+    // ignore
   }
 
   const base64 = await renderQrPngBase64(qr);

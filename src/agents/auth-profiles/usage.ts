@@ -1,6 +1,6 @@
 import type { OpenClawConfig } from "../../config/config.js";
 import type { AuthProfileFailureReason, AuthProfileStore, ProfileUsageStats } from "./types.js";
-import { normalizeProviderId } from "../model-selection.js";
+import { normalizeProviderId } from "../provider-utils.js";
 import { saveAuthProfileStore, updateAuthProfileStoreWithLock } from "./store.js";
 
 function resolveProfileUnusableUntil(stats: ProfileUsageStats): number | null {

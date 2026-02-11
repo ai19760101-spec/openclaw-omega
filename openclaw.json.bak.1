@@ -1,0 +1,43 @@
+{
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "adb7715b08a163773a96eea9d50a8646e45c49d48622bf89"
+    },
+    "http": {
+      "endpoints": {
+        "chatCompletions": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openai/gpt-4o"
+      },
+      "memorySearch": {
+        "enabled": false
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "botToken": "8006204796:AAEwPWDosudQSjYZtW2VSYK7CByzeTPv3nI"
+    }
+  },
+  "plugins": {
+    "enabled": true,
+    "deny": [
+      "memory-core"
+    ],
+    "entries": {
+      "whatsapp": {
+        "enabled": false
+      }
+    }
+  }
+}

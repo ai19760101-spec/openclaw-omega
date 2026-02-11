@@ -1,6 +1,6 @@
 import path from "node:path";
-import type { OpenClawConfig } from "../config/config.js";
-import { resolveStateDir } from "../config/paths.js";
+import { type OpenClawConfig } from "../config/types.js";
+import { resolveConfigPathCandidate, resolveStateDir } from "../config/paths.js";
 import {
   DEFAULT_AGENT_ID,
   normalizeAgentId,
@@ -178,7 +178,7 @@ export function resolveAgentWorkspaceDir(cfg: OpenClawConfig, agentId: string) {
     return resolveDefaultAgentWorkspaceDir(process.env);
   }
   const stateDir = resolveStateDir(process.env);
-  return path.join(stateDir, `workspace-${id}`);
+  return path.join(stateDir, `workspace - ${id} `);
 }
 
 export function resolveAgentDir(cfg: OpenClawConfig, agentId: string) {

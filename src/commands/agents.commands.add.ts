@@ -1,3 +1,4 @@
+
 import fs from "node:fs/promises";
 import path from "node:path";
 import type { RuntimeEnv } from "../runtime.js";
@@ -9,13 +10,14 @@ import {
 } from "../agents/agent-scope.js";
 import { ensureAuthProfileStore } from "../agents/auth-profiles.js";
 import { resolveAuthStorePath } from "../agents/auth-profiles/paths.js";
-import { writeConfigFile } from "../config/config.js";
+import { writeConfigFile, readConfigFileSnapshot, type OpenClawConfig } from "../config/config.js";
 import { logConfigUpdated } from "../config/logging.js";
 import { DEFAULT_AGENT_ID, normalizeAgentId } from "../routing/session-key.js";
 import { defaultRuntime } from "../runtime.js";
 import { resolveUserPath, shortenHomePath } from "../utils.js";
 import { createClackPrompter } from "../wizard/clack-prompter.js";
 import { WizardCancelledError } from "../wizard/prompts.js";
+
 import {
   applyAgentBindings,
   buildChannelBindings,
@@ -23,6 +25,7 @@ import {
   parseBindingSpecs,
 } from "./agents.bindings.js";
 import { createQuietRuntime, requireValidConfig } from "./agents.command-shared.js";
+import { formatCliCommand } from "../cli/command-format.js";
 import { applyAgentConfig, findAgentEntryIndex, listAgentEntries } from "./agents.config.js";
 import { promptAuthChoiceGrouped } from "./auth-choice-prompt.js";
 import { applyAuthChoice, warnIfModelConfigLooksOff } from "./auth-choice.js";
@@ -47,6 +50,8 @@ async function fileExists(pathname: string): Promise<boolean> {
     return false;
   }
 }
+
+
 
 export async function agentsAddCommand(
   opts: AgentsAddOptions,

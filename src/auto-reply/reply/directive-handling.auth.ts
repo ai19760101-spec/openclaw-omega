@@ -10,7 +10,7 @@ import {
   resolveAuthProfileOrder,
   resolveEnvApiKey,
 } from "../../agents/model-auth.js";
-import { normalizeProviderId } from "../../agents/model-selection.js";
+import { normalizeProviderId } from "../../agents/provider-utils.js";
 import { shortenHomePath } from "../../utils.js";
 
 export type ModelAuthDetailMode = "compact" | "verbose";

@@ -1,6 +1,6 @@
 import type { OpenClawConfig } from "../config/config.js";
 import type { CliBackendConfig } from "../config/types.js";
-import { normalizeProviderId } from "./model-selection.js";
+import { normalizeProviderId } from "./provider-utils.js";
 
 export type ResolvedCliBackend = {
   id: string;

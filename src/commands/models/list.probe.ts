@@ -12,7 +12,8 @@ import {
 import { describeFailoverError } from "../../agents/failover-error.js";
 import { getCustomProviderApiKey, resolveEnvApiKey } from "../../agents/model-auth.js";
 import { loadModelCatalog } from "../../agents/model-catalog.js";
-import { normalizeProviderId, parseModelRef } from "../../agents/model-selection.js";
+import { normalizeProviderId } from "../../agents/provider-utils.js";
+import { parseModelRef } from "../../agents/model-selection.js";
 import { runEmbeddedPiAgent } from "../../agents/pi-embedded.js";
 import { resolveDefaultAgentWorkspaceDir } from "../../agents/workspace.js";
 import {

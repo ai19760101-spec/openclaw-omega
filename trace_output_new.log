@@ -1,0 +1,141 @@
+npm warn Unknown project config "allow-build-scripts". This will stop working in the next major version of npm.
+🔥 ENTRY POINT HIT 🔥
+Trace 1: Before filter
+Trace 2: Before normalize
+Trace 3: After normalize
+Trace 4: After argv normalization
+Trace 5: Respawn bypassed
+Trace 6: Importing run-main
+Trace 7: Running runCli
+[90m│[39m
+[32m◇[39m  [0mDoctor changes[0m [90m────────────────────────╮[39m
+[90m│[39m                                         [90m│[39m
+[90m│[39m  [2mTelegram configured, not enabled yet.[22m  [90m│[39m
+[90m│[39m                                         [90m│[39m
+[90m├─────────────────────────────────────────╯[39m
+[90m│[39m
+[32m◇[39m  [0mDoctor[0m [90m──────────────────────────────────────────────╮[39m
+[90m│[39m                                                       [90m│[39m
+[90m│[39m  [2mRun "openclaw doctor --fix" to apply these changes.[22m  [90m│[39m
+[90m│[39m                                                       [90m│[39m
+[90m├───────────────────────────────────────────────────────╯[39m
+[90m2026-02-11T05:33:35.450Z[39m [36m[gateway][39m [36mauto-enabled plugins:[39m
+[36m- Telegram configured, not enabled yet.[39m
+2026-02-11T05:33:35.540Z Registered plugin command: /pair (plugin: device-pair)
+2026-02-11T05:33:35.563Z Registered plugin command: /phone (plugin: phone-control)
+2026-02-11T05:33:35.573Z Registered plugin command: /voice (plugin: talk-voice)
+[90m2026-02-11T05:33:35.583Z[39m [36m[gateway][39m [36m[plugins] memory slot plugin not found or not marked as memory: memory-core[39m
+[90m2026-02-11T05:33:35.649Z[39m [36m[gateway][39m [36mControl UI assets missing; building (ui:build, auto-installs UI deps)…[39m
+[90m2026-02-11T05:33:36.145Z[39m [36m[gateway][39m [33mControl UI build failed: Missing UI runner: install pnpm, then retry.[39m
+[90m2026-02-11T05:33:36.172Z[39m [35m[canvas][39m [36mhost mounted at http://127.0.0.1:18789/__openclaw__/canvas/ (root C:\Users\joshu\.openclaw\canvas)[39m
+2026-02-11T05:33:39.051Z bonjour: starting (hostname=openclaw, instance="Wheat-MIS_NB (OpenClaw)", gatewayPort=18789, minimal=true)
+[90m2026-02-11T05:33:39.185Z[39m [36m[heartbeat][39m [36mstarted[39m
+[90m2026-02-11T05:33:39.195Z[39m [36m[gateway][39m [36magent model: openai/gpt-4o[39m
+[90m2026-02-11T05:33:39.198Z[39m [36m[gateway][39m [36mlistening on ws://127.0.0.1:18789 (PID 15292)[39m
+[90m2026-02-11T05:33:39.202Z[39m [36m[gateway][39m [36mlistening on ws://[::1]:18789[39m
+[90m2026-02-11T05:33:39.207Z[39m [36m[gateway][39m [36mlog file: \tmp\openclaw\openclaw-2026-02-11.log[39m
+[90m2026-02-11T05:33:39.228Z[39m [36m[ws][39m [36m→ event health seq=1 clients=0 presenceVersion=1 healthVersion=2[39m
+[90m2026-02-11T05:33:39.362Z[39m [35m[browser/service][39m [36mBrowser control service ready (profiles=2)[39m
+[90m2026-02-11T05:34:09.655Z[39m [36m[ws][39m [36m→ event tick seq=2 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:34:39.372Z[39m [36m[ws][39m [36m→ event health seq=3 clients=0 presenceVersion=1 healthVersion=3[39m
+[90m2026-02-11T05:34:39.379Z[39m [36m[ws][39m [36m→ event tick seq=4 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:35:09.761Z[39m [36m[ws][39m [36m→ event tick seq=5 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:35:39.296Z[39m [36m[ws][39m [36m→ event health seq=6 clients=0 presenceVersion=1 healthVersion=4[39m
+[90m2026-02-11T05:35:39.406Z[39m [36m[ws][39m [36m→ event tick seq=7 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:36:09.498Z[39m [36m[ws][39m [36m→ event tick seq=8 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:36:39.338Z[39m [36m[ws][39m [36m→ event health seq=9 clients=0 presenceVersion=1 healthVersion=5[39m
+[90m2026-02-11T05:36:39.429Z[39m [36m[ws][39m [36m→ event tick seq=10 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:37:09.580Z[39m [36m[ws][39m [36m→ event tick seq=11 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:37:39.377Z[39m [36m[ws][39m [36m→ event health seq=12 clients=0 presenceVersion=1 healthVersion=6[39m
+[90m2026-02-11T05:37:39.461Z[39m [36m[ws][39m [36m→ event tick seq=13 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:38:09.554Z[39m [36m[ws][39m [36m→ event tick seq=14 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:38:39.326Z[39m [36m[ws][39m [36m→ event health seq=15 clients=0 presenceVersion=1 healthVersion=7[39m
+[90m2026-02-11T05:38:39.482Z[39m [36m[ws][39m [36m→ event tick seq=16 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:39:09.545Z[39m [36m[ws][39m [36m→ event tick seq=17 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:39:39.358Z[39m [36m[ws][39m [36m→ event health seq=18 clients=0 presenceVersion=1 healthVersion=8[39m
+[90m2026-02-11T05:39:39.503Z[39m [36m[ws][39m [36m→ event tick seq=19 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:40:09.572Z[39m [36m[ws][39m [36m→ event tick seq=20 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:40:39.444Z[39m [36m[ws][39m [36m→ event health seq=21 clients=0 presenceVersion=1 healthVersion=9[39m
+[90m2026-02-11T05:40:39.497Z[39m [36m[ws][39m [36m→ event tick seq=22 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:41:09.576Z[39m [36m[ws][39m [36m→ event tick seq=23 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:41:39.388Z[39m [36m[ws][39m [36m→ event health seq=24 clients=0 presenceVersion=1 healthVersion=10[39m
+[90m2026-02-11T05:41:39.520Z[39m [36m[ws][39m [36m→ event tick seq=25 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:42:09.570Z[39m [36m[ws][39m [36m→ event tick seq=26 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:42:39.268Z[39m [36m[ws][39m [36m→ event health seq=27 clients=0 presenceVersion=1 healthVersion=11[39m
+[90m2026-02-11T05:42:39.585Z[39m [36m[ws][39m [36m→ event tick seq=28 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:43:09.600Z[39m [36m[ws][39m [36m→ event tick seq=29 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:43:39.612Z[39m [36m[ws][39m [36m→ event health seq=30 clients=0 presenceVersion=1 healthVersion=12[39m
+[90m2026-02-11T05:43:39.619Z[39m [36m[ws][39m [36m→ event tick seq=31 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:44:09.668Z[39m [36m[ws][39m [36m→ event tick seq=32 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:44:39.270Z[39m [36m[ws][39m [36m→ event health seq=33 clients=0 presenceVersion=1 healthVersion=13[39m
+[90m2026-02-11T05:44:39.683Z[39m [36m[ws][39m [36m→ event tick seq=34 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:45:09.676Z[39m [36m[ws][39m [36m→ event tick seq=35 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:45:39.482Z[39m [36m[ws][39m [36m→ event health seq=36 clients=0 presenceVersion=1 healthVersion=14[39m
+[90m2026-02-11T05:45:39.669Z[39m [36m[ws][39m [36m→ event tick seq=37 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:46:09.706Z[39m [36m[ws][39m [36m→ event tick seq=38 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:46:39.500Z[39m [36m[ws][39m [36m→ event health seq=39 clients=0 presenceVersion=1 healthVersion=15[39m
+[90m2026-02-11T05:46:39.670Z[39m [36m[ws][39m [36m→ event tick seq=40 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:47:09.699Z[39m [36m[ws][39m [36m→ event tick seq=41 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:47:39.328Z[39m [36m[ws][39m [36m→ event health seq=42 clients=0 presenceVersion=1 healthVersion=16[39m
+[90m2026-02-11T05:47:39.721Z[39m [36m[ws][39m [36m→ event tick seq=43 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:48:09.723Z[39m [36m[ws][39m [36m→ event tick seq=44 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:48:39.312Z[39m [36m[ws][39m [36m→ event health seq=45 clients=0 presenceVersion=1 healthVersion=17[39m
+[90m2026-02-11T05:48:39.743Z[39m [36m[ws][39m [36m→ event tick seq=46 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:49:09.929Z[39m [36m[ws][39m [36m→ event tick seq=47 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:49:39.342Z[39m [36m[ws][39m [36m→ event health seq=48 clients=0 presenceVersion=1 healthVersion=18[39m
+[90m2026-02-11T05:49:39.726Z[39m [36m[ws][39m [36m→ event tick seq=49 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:50:09.756Z[39m [36m[ws][39m [36m→ event tick seq=50 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:50:39.534Z[39m [36m[ws][39m [36m→ event health seq=51 clients=0 presenceVersion=1 healthVersion=19[39m
+[90m2026-02-11T05:50:39.790Z[39m [36m[ws][39m [36m→ event tick seq=52 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:51:09.819Z[39m [36m[ws][39m [36m→ event tick seq=53 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:51:39.328Z[39m [36m[ws][39m [36m→ event health seq=54 clients=0 presenceVersion=1 healthVersion=20[39m
+[90m2026-02-11T05:51:39.777Z[39m [36m[ws][39m [36m→ event tick seq=55 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:52:09.798Z[39m [36m[ws][39m [36m→ event tick seq=56 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:52:39.332Z[39m [36m[ws][39m [36m→ event health seq=57 clients=0 presenceVersion=1 healthVersion=21[39m
+[90m2026-02-11T05:52:39.803Z[39m [36m[ws][39m [36m→ event tick seq=58 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:53:09.832Z[39m [36m[ws][39m [36m→ event tick seq=59 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:53:39.404Z[39m [36m[ws][39m [36m→ event health seq=60 clients=0 presenceVersion=1 healthVersion=22[39m
+[90m2026-02-11T05:53:39.943Z[39m [36m[ws][39m [36m→ event tick seq=61 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:54:09.878Z[39m [36m[ws][39m [36m→ event tick seq=62 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:54:39.421Z[39m [36m[ws][39m [36m→ event health seq=63 clients=0 presenceVersion=1 healthVersion=23[39m
+[90m2026-02-11T05:54:39.890Z[39m [36m[ws][39m [36m→ event tick seq=64 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:55:09.875Z[39m [36m[ws][39m [36m→ event tick seq=65 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:55:39.396Z[39m [36m[ws][39m [36m→ event health seq=66 clients=0 presenceVersion=1 healthVersion=24[39m
+[90m2026-02-11T05:55:39.877Z[39m [36m[ws][39m [36m→ event tick seq=67 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:56:09.917Z[39m [36m[ws][39m [36m→ event tick seq=68 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:56:39.360Z[39m [36m[ws][39m [36m→ event health seq=69 clients=0 presenceVersion=1 healthVersion=25[39m
+[90m2026-02-11T05:56:39.902Z[39m [36m[ws][39m [36m→ event tick seq=70 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:57:09.929Z[39m [36m[ws][39m [36m→ event tick seq=71 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:57:39.500Z[39m [36m[ws][39m [36m→ event health seq=72 clients=0 presenceVersion=1 healthVersion=26[39m
+[90m2026-02-11T05:57:39.918Z[39m [36m[ws][39m [36m→ event tick seq=73 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:58:09.932Z[39m [36m[ws][39m [36m→ event tick seq=74 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:58:39.352Z[39m [36m[ws][39m [36m→ event health seq=75 clients=0 presenceVersion=1 healthVersion=27[39m
+[90m2026-02-11T05:58:39.941Z[39m [36m[ws][39m [36m→ event tick seq=76 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:59:09.980Z[39m [36m[ws][39m [36m→ event tick seq=77 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T05:59:39.403Z[39m [36m[ws][39m [36m→ event health seq=78 clients=0 presenceVersion=1 healthVersion=28[39m
+[90m2026-02-11T05:59:39.964Z[39m [36m[ws][39m [36m→ event tick seq=79 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:00:09.999Z[39m [36m[ws][39m [36m→ event tick seq=80 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:00:39.434Z[39m [36m[ws][39m [36m→ event health seq=81 clients=0 presenceVersion=1 healthVersion=29[39m
+[90m2026-02-11T06:00:39.998Z[39m [36m[ws][39m [36m→ event tick seq=82 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:01:10.012Z[39m [36m[ws][39m [36m→ event tick seq=83 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:01:39.408Z[39m [36m[ws][39m [36m→ event health seq=84 clients=0 presenceVersion=1 healthVersion=30[39m
+[90m2026-02-11T06:01:40.005Z[39m [36m[ws][39m [36m→ event tick seq=85 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:02:10.010Z[39m [36m[ws][39m [36m→ event tick seq=86 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:02:39.426Z[39m [36m[ws][39m [36m→ event health seq=87 clients=0 presenceVersion=1 healthVersion=31[39m
+[90m2026-02-11T06:02:40.027Z[39m [36m[ws][39m [36m→ event tick seq=88 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:03:10.097Z[39m [36m[ws][39m [36m→ event tick seq=89 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:03:39.525Z[39m [36m[ws][39m [36m→ event health seq=90 clients=0 presenceVersion=1 healthVersion=32[39m
+[90m2026-02-11T06:03:40.033Z[39m [36m[ws][39m [36m→ event heartbeat seq=91 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:03:40.046Z[39m [36m[ws][39m [36m→ event tick seq=92 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:04:10.179Z[39m [36m[ws][39m [36m→ event tick seq=93 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:04:39.599Z[39m [36m[ws][39m [36m→ event health seq=94 clients=0 presenceVersion=1 healthVersion=33[39m
+[90m2026-02-11T06:04:40.405Z[39m [36m[ws][39m [36m→ event tick seq=95 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:05:10.135Z[39m [36m[ws][39m [36m→ event tick seq=96 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:05:39.431Z[39m [36m[ws][39m [36m→ event health seq=97 clients=0 presenceVersion=1 healthVersion=34[39m
+[90m2026-02-11T06:05:40.091Z[39m [36m[ws][39m [36m→ event tick seq=98 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:06:10.113Z[39m [36m[ws][39m [36m→ event tick seq=99 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:06:39.534Z[39m [36m[ws][39m [36m→ event health seq=100 clients=0 presenceVersion=1 healthVersion=35[39m
+[90m2026-02-11T06:06:40.134Z[39m [36m[ws][39m [36m→ event tick seq=101 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:07:10.147Z[39m [36m[ws][39m [36m→ event tick seq=102 clients=0 dropIfSlow=true[39m
+[90m2026-02-11T06:07:39.465Z[39m [36m[ws][39m [36m→ event health seq=103 clients=0 presenceVersion=1 healthVersion=36[39m
+[90m2026-02-11T06:07:42.073Z[39m [36m[ws][39m [36m→ event tick seq=104 clients=0 dropIfSlow=true[39m

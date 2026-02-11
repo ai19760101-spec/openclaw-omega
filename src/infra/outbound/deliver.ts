@@ -20,7 +20,7 @@ import { resolveMarkdownTableMode } from "../../config/markdown-tables.js";
 import {
   appendAssistantMessageToSessionTranscript,
   resolveMirroredTranscriptText,
-} from "../../config/sessions.js";
+} from "../../config/sessions/transcript.js";
 import { markdownToSignalTextChunks, type SignalTextStyleRange } from "../../signal/format.js";
 import { sendMessageSignal } from "../../signal/send.js";
 import { throwIfAborted } from "./abort.js";
@@ -132,18 +132,18 @@ function createPluginHandler(params: {
     textChunkLimit: outbound.textChunkLimit,
     sendPayload: outbound.sendPayload
       ? async (payload) =>
-          outbound.sendPayload!({
-            cfg: params.cfg,
-            to: params.to,
-            text: payload.text ?? "",
-            mediaUrl: payload.mediaUrl,
-            accountId: params.accountId,
-            replyToId: params.replyToId,
-            threadId: params.threadId,
-            gifPlayback: params.gifPlayback,
-            deps: params.deps,
-            payload,
-          })
+        outbound.sendPayload!({
+          cfg: params.cfg,
+          to: params.to,
+          text: payload.text ?? "",
+          mediaUrl: payload.mediaUrl,
+          accountId: params.accountId,
+          replyToId: params.replyToId,
+          threadId: params.threadId,
+          gifPlayback: params.gifPlayback,
+          deps: params.deps,
+          payload,
+        })
       : undefined,
     sendText: async (text) =>
       sendText({
@@ -210,8 +210,8 @@ export async function deliverOutboundPayloads(params: {
   });
   const textLimit = handler.chunker
     ? resolveTextChunkLimit(cfg, channel, accountId, {
-        fallbackLimit: handler.textChunkLimit,
-      })
+      fallbackLimit: handler.textChunkLimit,
+    })
     : undefined;
   const chunkMode = handler.chunker ? resolveChunkMode(cfg, channel, accountId) : "length";
   const isSignalChannel = channel === "signal";
@@ -220,12 +220,12 @@ export async function deliverOutboundPayloads(params: {
     : "code";
   const signalMaxBytes = isSignalChannel
     ? resolveChannelMediaMaxBytes({
-        cfg,
-        resolveChannelLimitMb: ({ cfg, accountId }) =>
-          cfg.channels?.signal?.accounts?.[accountId]?.mediaMaxMb ??
-          cfg.channels?.signal?.mediaMaxMb,
-        accountId,
-      })
+      cfg,
+      resolveChannelLimitMb: ({ cfg, accountId }) =>
+        cfg.channels?.signal?.accounts?.[accountId]?.mediaMaxMb ??
+        cfg.channels?.signal?.mediaMaxMb,
+      accountId,
+    })
     : undefined;
 
   const sendTextChunks = async (text: string) => {
@@ -281,8 +281,8 @@ export async function deliverOutboundPayloads(params: {
     let signalChunks =
       textLimit === undefined
         ? markdownToSignalTextChunks(text, Number.POSITIVE_INFINITY, {
-            tableMode: signalTableMode,
-          })
+          tableMode: signalTableMode,
+        })
         : markdownToSignalTextChunks(text, textLimit, { tableMode: signalTableMode });
     if (signalChunks.length === 0 && text) {
       signalChunks = [{ text, styles: [] }];

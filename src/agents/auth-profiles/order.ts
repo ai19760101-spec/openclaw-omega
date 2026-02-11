@@ -1,6 +1,6 @@
 import type { OpenClawConfig } from "../../config/config.js";
 import type { AuthProfileStore } from "./types.js";
-import { normalizeProviderId } from "../model-selection.js";
+import { normalizeProviderId } from "../provider-utils.js";
 import { listProfilesForProvider } from "./profiles.js";
 import { isProfileInCooldown } from "./usage.js";
 

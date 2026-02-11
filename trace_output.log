@@ -1,0 +1,8 @@
+🔥 ENTRY POINT HIT 🔥
+Trace 1: Before filter
+Trace 2: Before normalize
+Trace 3: After normalize
+Trace 4: After argv normalization
+Trace 5: Respawn bypassed
+Trace 6: Importing run-main
+Trace 7: Running runCli

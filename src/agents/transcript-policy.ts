@@ -1,5 +1,5 @@
 import type { ToolCallIdMode } from "./tool-call-id.js";
-import { normalizeProviderId } from "./model-selection.js";
+import { normalizeProviderId } from "./provider-utils.js";
 import { isAntigravityClaude, isGoogleModelApi } from "./pi-embedded-helpers/google.js";
 
 export type TranscriptSanitizeMode = "full" | "images-only";

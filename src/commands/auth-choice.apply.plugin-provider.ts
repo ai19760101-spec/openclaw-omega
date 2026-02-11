@@ -8,7 +8,7 @@ import {
   resolveAgentWorkspaceDir,
 } from "../agents/agent-scope.js";
 import { upsertAuthProfile } from "../agents/auth-profiles.js";
-import { normalizeProviderId } from "../agents/model-selection.js";
+import { normalizeProviderId } from "../agents/provider-utils.js";
 import { resolveDefaultAgentWorkspaceDir } from "../agents/workspace.js";
 import { enablePluginInConfig } from "../plugins/enable.js";
 import { resolvePluginProviders } from "../plugins/providers.js";

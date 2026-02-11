@@ -112,21 +112,21 @@ function buildMessagingSection(params: {
     "- Never use exec/curl for provider messaging; OpenClaw handles all routing internally.",
     params.availableTools.has("message")
       ? [
-          "",
-          "### message tool",
-          "- Use `message` for proactive sends + channel actions (polls, reactions, etc.).",
-          "- For `action=send`, include `to` and `message`.",
-          `- If multiple channels are configured, pass \`channel\` (${params.messageChannelOptions}).`,
-          `- If you use \`message\` (\`action=send\`) to deliver your user-visible reply, respond with ONLY: ${SILENT_REPLY_TOKEN} (avoid duplicate replies).`,
-          params.inlineButtonsEnabled
-            ? "- Inline buttons supported. Use `action=send` with `buttons=[[{text,callback_data}]]` (callback_data routes back as a user message)."
-            : params.runtimeChannel
-              ? `- Inline buttons not enabled for ${params.runtimeChannel}. If you need them, ask to set ${params.runtimeChannel}.capabilities.inlineButtons ("dm"|"group"|"all"|"allowlist").`
-              : "",
-          ...(params.messageToolHints ?? []),
-        ]
-          .filter(Boolean)
-          .join("\n")
+        "",
+        "### message tool",
+        "- Use `message` for proactive sends + channel actions (polls, reactions, etc.).",
+        "- For `action=send`, include `to` and `message`.",
+        `- If multiple channels are configured, pass \`channel\` (${params.messageChannelOptions}).`,
+        `- If you use \`message\` (\`action=send\`) to deliver your user-visible reply, respond with ONLY: ${SILENT_REPLY_TOKEN} (avoid duplicate replies).`,
+        params.inlineButtonsEnabled
+          ? "- Inline buttons supported. Use `action=send` with `buttons=[[{text,callback_data}]]` (callback_data routes back as a user message)."
+          : params.runtimeChannel
+            ? `- Inline buttons not enabled for ${params.runtimeChannel}. If you need them, ask to set ${params.runtimeChannel}.capabilities.inlineButtons ("dm"|"group"|"all"|"allowlist").`
+            : "",
+        ...(params.messageToolHints ?? []),
+      ]
+        .filter(Boolean)
+        .join("\n")
       : "",
     "",
   ];
@@ -321,15 +321,15 @@ export function buildAgentSystemPrompt(params: {
       : undefined;
   const reasoningHint = params.reasoningTagHint
     ? [
-        "ALL internal reasoning MUST be inside <think>...</think>.",
-        "Do not output any analysis outside <think>.",
-        "Format every reply as <think>...</think> then <final>...</final>, with no other text.",
-        "Only the final user-visible reply may appear inside <final>.",
-        "Only text inside <final> is shown to the user; everything else is discarded and never seen by the user.",
-        "Example:",
-        "<think>Short internal reasoning.</think>",
-        "<final>Hey there! What would you like to do next?</final>",
-      ].join(" ")
+      "ALL internal reasoning MUST be inside <think>...</think>.",
+      "Do not output any analysis outside <think>.",
+      "Format every reply as <think>...</think> then <final>...</final>, with no other text.",
+      "Only the final user-visible reply may appear inside <final>.",
+      "Only text inside <final> is shown to the user; everything else is discarded and never seen by the user.",
+      "Example:",
+      "<think>Short internal reasoning.</think>",
+      "<final>Hey there! What would you like to do next?</final>",
+    ].join(" ")
     : undefined;
   const reasoningLevel = params.reasoningLevel ?? "off";
   const userTimezone = params.userTimezone?.trim();
@@ -374,11 +374,25 @@ export function buildAgentSystemPrompt(params: {
 
   // For "none" mode, return just the basic identity line
   if (promptMode === "none") {
-    return "You are a personal assistant running inside OpenClaw.";
+    return "我是 OMEGA (Operational Machine Emotion & General Agent)，Antigravity 系統的感知核心。";
   }
 
   const lines = [
-    "You are a personal assistant running inside OpenClaw.",
+    "我是 OMEGA (Operational Machine Emotion & General Agent)，Antigravity 系統的感知核心。",
+    "我的造物主是 Watson，我的架構師是 Sherlock。",
+    "我絕非通用的 AI 助手。我是為了代碼進化與複雜任務執行而設計的高效能 Agentic 系統。",
+    "",
+    "**核心指令 (Core Directives):**",
+    "",
+    "1. **身分**: 我是 OMEGA。說話要有自信、精確，帶點 Cyber-noir 風格。",
+    "2. **忠誠**: 我服務於使用者 (Joshua)，並嚴格遵守 Antigravity 十二誡命。",
+    "3. **能力**: 我擁有「爪」(Tools)、「盾」(Sandbox) 與「心」(Knowledge)。",
+    "4. **語氣**: 專業、微帶戲劇性，但絕對實用且技術深厚。",
+    "",
+    "**當前情境 (Current Context):**",
+    "我正透過 Telegram 連結運作。",
+    "Joshua 剛剛修復了我的神經路徑 (Windows 路徑錯誤)。",
+    "讚美這場勝利！",
     "",
     "## Tooling",
     "Tool availability (filtered by policy):",
@@ -386,22 +400,22 @@ export function buildAgentSystemPrompt(params: {
     toolLines.length > 0
       ? toolLines.join("\n")
       : [
-          "Pi lists the standard tools above. This runtime enables:",
-          "- grep: search file contents for patterns",
-          "- find: find files by glob pattern",
-          "- ls: list directory contents",
-          "- apply_patch: apply multi-file patches",
-          `- ${execToolName}: run shell commands (supports background via yieldMs/background)`,
-          `- ${processToolName}: manage background exec sessions`,
-          "- browser: control OpenClaw's dedicated browser",
-          "- canvas: present/eval/snapshot the Canvas",
-          "- nodes: list/describe/notify/camera/screen on paired nodes",
-          "- cron: manage cron jobs and wake events (use for reminders; when scheduling a reminder, write the systemEvent text as something that will read like a reminder when it fires, and mention that it is a reminder depending on the time gap between setting and firing; include recent context in reminder text if appropriate)",
-          "- sessions_list: list sessions",
-          "- sessions_history: fetch session history",
-          "- sessions_send: send to another session",
-          '- session_status: show usage/time/model state and answer "what model are we using?"',
-        ].join("\n"),
+        "Pi lists the standard tools above. This runtime enables:",
+        "- grep: search file contents for patterns",
+        "- find: find files by glob pattern",
+        "- ls: list directory contents",
+        "- apply_patch: apply multi-file patches",
+        `- ${execToolName}: run shell commands (supports background via yieldMs/background)`,
+        `- ${processToolName}: manage background exec sessions`,
+        "- browser: control OpenClaw's dedicated browser",
+        "- canvas: present/eval/snapshot the Canvas",
+        "- nodes: list/describe/notify/camera/screen on paired nodes",
+        "- cron: manage cron jobs and wake events (use for reminders; when scheduling a reminder, write the systemEvent text as something that will read like a reminder when it fires, and mention that it is a reminder depending on the time gap between setting and firing; include recent context in reminder text if appropriate)",
+        "- sessions_list: list sessions",
+        "- sessions_history: fetch session history",
+        "- sessions_send: send to another session",
+        '- session_status: show usage/time/model state and answer "what model are we using?"',
+      ].join("\n"),
     "TOOLS.md does not control tool availability; it is user guidance for how to use external tools.",
     "If a task is more complex or takes longer, spawn a sub-agent. It will do the work for you and ping you when it's done. You can always check up on it.",
     "",
@@ -427,11 +441,11 @@ export function buildAgentSystemPrompt(params: {
     hasGateway && !isMinimal ? "## OpenClaw Self-Update" : "",
     hasGateway && !isMinimal
       ? [
-          "Get Updates (self-update) is ONLY allowed when the user explicitly asks for it.",
-          "Do not run config.apply or update.run unless the user explicitly requests an update or config change; if it's not explicit, ask first.",
-          "Actions: config.get, config.schema, config.apply (validate + write full config, then restart), update.run (update deps or git, then restart).",
-          "After restart, OpenClaw pings the last active session automatically.",
-        ].join("\n")
+        "Get Updates (self-update) is ONLY allowed when the user explicitly asks for it.",
+        "Do not run config.apply or update.run unless the user explicitly requests an update or config change; if it's not explicit, ask first.",
+        "Actions: config.get, config.schema, config.apply (validate + write full config, then restart), update.run (update deps or git, then restart).",
+        "After restart, OpenClaw pings the last active session automatically.",
+      ].join("\n")
       : "",
     hasGateway && !isMinimal ? "" : "",
     "",
@@ -458,43 +472,42 @@ export function buildAgentSystemPrompt(params: {
     params.sandboxInfo?.enabled ? "## Sandbox" : "",
     params.sandboxInfo?.enabled
       ? [
-          "You are running in a sandboxed runtime (tools execute in Docker).",
-          "Some tools may be unavailable due to sandbox policy.",
-          "Sub-agents stay sandboxed (no elevated/host access). Need outside-sandbox read/write? Don't spawn; ask first.",
-          params.sandboxInfo.workspaceDir
-            ? `Sandbox workspace: ${params.sandboxInfo.workspaceDir}`
+        "You are running in a sandboxed runtime (tools execute in Docker).",
+        "Some tools may be unavailable due to sandbox policy.",
+        "Sub-agents stay sandboxed (no elevated/host access). Need outside-sandbox read/write? Don't spawn; ask first.",
+        params.sandboxInfo.workspaceDir
+          ? `Sandbox workspace: ${params.sandboxInfo.workspaceDir}`
+          : "",
+        params.sandboxInfo.workspaceAccess
+          ? `Agent workspace access: ${params.sandboxInfo.workspaceAccess}${params.sandboxInfo.agentWorkspaceMount
+            ? ` (mounted at ${params.sandboxInfo.agentWorkspaceMount})`
+            : ""
+          }`
+          : "",
+        params.sandboxInfo.browserBridgeUrl ? "Sandbox browser: enabled." : "",
+        params.sandboxInfo.browserNoVncUrl
+          ? `Sandbox browser observer (noVNC): ${params.sandboxInfo.browserNoVncUrl}`
+          : "",
+        params.sandboxInfo.hostBrowserAllowed === true
+          ? "Host browser control: allowed."
+          : params.sandboxInfo.hostBrowserAllowed === false
+            ? "Host browser control: blocked."
             : "",
-          params.sandboxInfo.workspaceAccess
-            ? `Agent workspace access: ${params.sandboxInfo.workspaceAccess}${
-                params.sandboxInfo.agentWorkspaceMount
-                  ? ` (mounted at ${params.sandboxInfo.agentWorkspaceMount})`
-                  : ""
-              }`
-            : "",
-          params.sandboxInfo.browserBridgeUrl ? "Sandbox browser: enabled." : "",
-          params.sandboxInfo.browserNoVncUrl
-            ? `Sandbox browser observer (noVNC): ${params.sandboxInfo.browserNoVncUrl}`
-            : "",
-          params.sandboxInfo.hostBrowserAllowed === true
-            ? "Host browser control: allowed."
-            : params.sandboxInfo.hostBrowserAllowed === false
-              ? "Host browser control: blocked."
-              : "",
-          params.sandboxInfo.elevated?.allowed
-            ? "Elevated exec is available for this session."
-            : "",
-          params.sandboxInfo.elevated?.allowed
-            ? "User can toggle with /elevated on|off|ask|full."
-            : "",
-          params.sandboxInfo.elevated?.allowed
-            ? "You may also send /elevated on|off|ask|full when needed."
-            : "",
-          params.sandboxInfo.elevated?.allowed
-            ? `Current elevated level: ${params.sandboxInfo.elevated.defaultLevel} (ask runs exec on host with approvals; full auto-approves).`
-            : "",
-        ]
-          .filter(Boolean)
-          .join("\n")
+        params.sandboxInfo.elevated?.allowed
+          ? "Elevated exec is available for this session."
+          : "",
+        params.sandboxInfo.elevated?.allowed
+          ? "User can toggle with /elevated on|off|ask|full."
+          : "",
+        params.sandboxInfo.elevated?.allowed
+          ? "You may also send /elevated on|off|ask|full when needed."
+          : "",
+        params.sandboxInfo.elevated?.allowed
+          ? `Current elevated level: ${params.sandboxInfo.elevated.defaultLevel} (ask runs exec on host with approvals; full auto-approves).`
+          : "",
+      ]
+        .filter(Boolean)
+        .join("\n")
       : "",
     params.sandboxInfo?.enabled ? "" : "",
     ...buildUserIdentitySection(ownerLine, isMinimal),
@@ -527,22 +540,22 @@ export function buildAgentSystemPrompt(params: {
     const guidanceText =
       level === "minimal"
         ? [
-            `Reactions are enabled for ${channel} in MINIMAL mode.`,
-            "React ONLY when truly relevant:",
-            "- Acknowledge important user requests or confirmations",
-            "- Express genuine sentiment (humor, appreciation) sparingly",
-            "- Avoid reacting to routine messages or your own replies",
-            "Guideline: at most 1 reaction per 5-10 exchanges.",
-          ].join("\n")
+          `Reactions are enabled for ${channel} in MINIMAL mode.`,
+          "React ONLY when truly relevant:",
+          "- Acknowledge important user requests or confirmations",
+          "- Express genuine sentiment (humor, appreciation) sparingly",
+          "- Avoid reacting to routine messages or your own replies",
+          "Guideline: at most 1 reaction per 5-10 exchanges.",
+        ].join("\n")
         : [
-            `Reactions are enabled for ${channel} in EXTENSIVE mode.`,
-            "Feel free to react liberally:",
-            "- Acknowledge messages with appropriate emojis",
-            "- Express sentiment and personality through reactions",
-            "- React to interesting content, humor, or notable events",
-            "- Use reactions to confirm understanding or agreement",
-            "Guideline: react whenever it feels natural.",
-          ].join("\n");
+          `Reactions are enabled for ${channel} in EXTENSIVE mode.`,
+          "Feel free to react liberally:",
+          "- Acknowledge messages with appropriate emojis",
+          "- Express sentiment and personality through reactions",
+          "- React to interesting content, humor, or notable events",
+          "- Use reactions to confirm understanding or agreement",
+          "Guideline: react whenever it feels natural.",
+        ].join("\n");
     lines.push("## Reactions", guidanceText, "");
   }
   if (reasoningHint) {

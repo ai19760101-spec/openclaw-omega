@@ -5,7 +5,7 @@ import {
   ensureAuthProfileStore,
   setAuthProfileOrder,
 } from "../../agents/auth-profiles.js";
-import { normalizeProviderId } from "../../agents/model-selection.js";
+import { normalizeProviderId } from "../../agents/provider-utils.js";
 import { loadConfig } from "../../config/config.js";
 import { shortenHomePath } from "../../utils.js";
 import { resolveKnownAgentId } from "./shared.js";

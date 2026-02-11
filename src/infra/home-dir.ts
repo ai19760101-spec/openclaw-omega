@@ -21,7 +21,7 @@ function resolveRawHomeDir(env: NodeJS.ProcessEnv, homedir: () => string): strin
       const fallbackHome =
         normalize(env.HOME) ?? normalize(env.USERPROFILE) ?? normalizeSafe(homedir);
       if (fallbackHome) {
-        return explicitHome.replace(/^~(?=$|[\\/])/, fallbackHome);
+        return explicitHome.replace(/^~(?=$|[\\/.])/, fallbackHome + (explicitHome[1] === "." ? path.sep : ""));
       }
       return undefined;
     }
@@ -70,8 +70,5 @@ export function expandHomePrefix(
   const home =
     normalize(opts?.home) ??
     resolveEffectiveHomeDir(opts?.env ?? process.env, opts?.homedir ?? os.homedir);
-  if (!home) {
-    return input;
-  }
-  return input.replace(/^~(?=$|[\\/])/, home);
+  return input.replace(/^~(?=$|[\\/.])/, home + (input[1] === "." ? path.sep : ""));
 }

@@ -17,7 +17,8 @@ import {
   saveAuthProfileStore,
 } from "./auth-profiles.js";
 import { getApiKeyForModel, requireApiKey } from "./model-auth.js";
-import { normalizeProviderId, parseModelRef } from "./model-selection.js";
+import { normalizeProviderId } from "./provider-utils.js";
+import { parseModelRef } from "./model-selection.js";
 import { ensureOpenClawModelsJson } from "./models-config.js";
 import { discoverAuthStorage, discoverModels } from "./pi-model-discovery.js";
 

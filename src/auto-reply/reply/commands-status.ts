@@ -15,7 +15,7 @@ import {
   resolveAuthProfileOrder,
 } from "../../agents/auth-profiles.js";
 import { getCustomProviderApiKey, resolveEnvApiKey } from "../../agents/model-auth.js";
-import { normalizeProviderId } from "../../agents/model-selection.js";
+import { normalizeProviderId } from "../../agents/provider-utils.js";
 import { listSubagentRunsForRequester } from "../../agents/subagent-registry.js";
 import {
   resolveInternalSessionKey,

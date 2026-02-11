@@ -9,7 +9,7 @@ import {
   resolveAuthProfileOrder,
 } from "../agents/auth-profiles.js";
 import { getCustomProviderApiKey, resolveEnvApiKey } from "../agents/model-auth.js";
-import { normalizeProviderId } from "../agents/model-selection.js";
+import { normalizeProviderId } from "../agents/provider-utils.js";
 import { loadConfig } from "../config/config.js";
 import { normalizeSecretInput } from "../utils/normalize-secret-input.js";
 

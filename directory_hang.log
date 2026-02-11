@@ -1,0 +1,15 @@
+npm warn Unknown project config "allow-build-scripts". This will stop working in the next major version of npm.
+DEBUG: Starting directory deps check...
+Loading: ./src/discord/accounts.js
+✅ Loaded: ./src/discord/accounts.js
+Loading: ./src/slack/accounts.js
+✅ Loaded: ./src/slack/accounts.js
+Loading: ./src/telegram/accounts.js
+✅ Loaded: ./src/telegram/accounts.js
+Loading: ./src/web/accounts.js
+✅ Loaded: ./src/web/accounts.js
+Loading: ./src/whatsapp/normalize.js
+✅ Loaded: ./src/whatsapp/normalize.js
+Loading: ./src/channels/plugins/normalize/slack.js
+✅ Loaded: ./src/channels/plugins/normalize/slack.js
+Done

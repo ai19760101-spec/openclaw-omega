@@ -1,0 +1,9 @@
+npm warn Unknown project config "allow-build-scripts". This will stop working in the next major version of npm.
+DEBUG: Starting bindings deps check...
+Loading: ./src/channels/plugins/helpers.js
+✅ Loaded: ./src/channels/plugins/helpers.js
+Loading: ./src/routing/session-key.js
+✅ Loaded: ./src/routing/session-key.js
+Loading: ./src/channels/plugins/index.js
+✅ Loaded: ./src/channels/plugins/index.js
+Done

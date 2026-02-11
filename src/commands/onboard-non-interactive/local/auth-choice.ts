@@ -2,7 +2,7 @@ import type { OpenClawConfig } from "../../../config/config.js";
 import type { RuntimeEnv } from "../../../runtime.js";
 import type { AuthChoice, OnboardOptions } from "../../onboard-types.js";
 import { upsertAuthProfile } from "../../../agents/auth-profiles.js";
-import { normalizeProviderId } from "../../../agents/model-selection.js";
+import { normalizeProviderId } from "../../../agents/provider-utils.js";
 import { parseDurationMs } from "../../../cli/parse-duration.js";
 import { upsertSharedEnvVar } from "../../../infra/env-file.js";
 import { shortenHomePath } from "../../../utils.js";

@@ -4,7 +4,8 @@ import {
   DEFAULT_COPILOT_API_BASE_URL,
   resolveCopilotApiToken,
 } from "../providers/github-copilot-token.js";
-import { ensureAuthProfileStore, listProfilesForProvider } from "./auth-profiles.js";
+import { ensureAuthProfileStore } from "./auth-profiles/store.js";
+import { listProfilesForProvider } from "./auth-profiles/profiles.js";
 import { discoverBedrockModels } from "./bedrock-discovery.js";
 import {
   buildCloudflareAiGatewayModelDefinition,
@@ -211,15 +212,9 @@ function resolveApiKeyFromProfiles(params: {
   return undefined;
 }
 
-export function normalizeGoogleModelId(id: string): string {
-  if (id === "gemini-3-pro") {
-    return "gemini-3-pro-preview";
-  }
-  if (id === "gemini-3-flash") {
-    return "gemini-3-flash-preview";
-  }
-  return id;
-}
+import { normalizeGoogleModelId } from "./model-ref-utils.js";
+
+export { normalizeGoogleModelId };
 
 function normalizeGoogleProvider(provider: ProviderConfig): ProviderConfig {
   let mutated = false;

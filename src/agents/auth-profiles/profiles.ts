@@ -1,6 +1,6 @@
 import type { AuthProfileCredential, AuthProfileStore } from "./types.js";
 import { normalizeSecretInput } from "../../utils/normalize-secret-input.js";
-import { normalizeProviderId } from "../model-selection.js";
+import { normalizeProviderId } from "../provider-utils.js";
 import {
   ensureAuthProfileStore,
   saveAuthProfileStore,
@@ -53,11 +53,11 @@ export function upsertAuthProfile(params: {
   const credential =
     params.credential.type === "api_key"
       ? {
-          ...params.credential,
-          ...(typeof params.credential.key === "string"
-            ? { key: normalizeSecretInput(params.credential.key) }
-            : {}),
-        }
+        ...params.credential,
+        ...(typeof params.credential.key === "string"
+          ? { key: normalizeSecretInput(params.credential.key) }
+          : {}),
+      }
       : params.credential.type === "token"
         ? { ...params.credential, token: normalizeSecretInput(params.credential.token) }
         : params.credential;

@@ -25,7 +25,7 @@ import {
   resolveAuthProfileOrder,
   type ResolvedProviderAuth,
 } from "../model-auth.js";
-import { normalizeProviderId } from "../model-selection.js";
+import { normalizeProviderId } from "../provider-utils.js";
 import { ensureOpenClawModelsJson } from "../models-config.js";
 import {
   BILLING_ERROR_USER_MESSAGE,

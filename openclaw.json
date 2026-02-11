@@ -1,0 +1,64 @@
+{
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openai/gpt-4o"
+      },
+      "memorySearch": {
+        "enabled": false
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto"
+  },
+  "channels": {
+    "telegram": {
+      "dmPolicy": "pairing",
+      "botToken": "8006204796:AAEwPWDosudQSjYZtW2VSYK7CByzeTPv3nI",
+      "groupPolicy": "allowlist",
+      "streamMode": "partial"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "adb7715b08a163773a96eea9d50a8646e45c49d48622bf89"
+    },
+    "http": {
+      "endpoints": {
+        "chatCompletions": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "plugins": {
+    "enabled": true,
+    "deny": [
+      "memory-core"
+    ],
+    "entries": {
+      "whatsapp": {
+        "enabled": false
+      },
+      "telegram": {
+        "enabled": true
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.2.9",
+    "lastTouchedAt": "2026-02-11T05:33:35.269Z"
+  }
+}

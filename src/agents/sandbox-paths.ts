@@ -17,7 +17,7 @@ function expandPath(filePath: string): string {
     return os.homedir();
   }
   if (normalized.startsWith("~/")) {
-    return os.homedir() + normalized.slice(1);
+    return path.join(os.homedir(), normalized.slice(1));
   }
   return normalized;
 }

@@ -1,9 +1,9 @@
 import type { Command } from "commander";
 import type { ProgramContext } from "./context.js";
-import { agentsListCommand } from "../../commands/agents.js";
+import { agentsListCommand } from "../../commands/agents.commands.list.js";
 import { healthCommand } from "../../commands/health.js";
 import { sessionsCommand } from "../../commands/sessions.js";
-import { statusCommand } from "../../commands/status.js";
+import { statusCommand } from "../../commands/status.command.js";
 import { defaultRuntime } from "../../runtime.js";
 import { getFlagValue, getPositiveIntFlagValue, getVerboseFlag, hasFlag } from "../argv.js";
 import { registerBrowserCli } from "../browser-cli.js";

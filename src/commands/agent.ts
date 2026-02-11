@@ -40,10 +40,12 @@ import { type CliDeps, createDefaultDeps } from "../cli/deps.js";
 import { loadConfig } from "../config/config.js";
 import {
   resolveAgentIdFromSessionKey,
+} from "../config/sessions/main-session.js";
+import {
   resolveSessionFilePath,
-  type SessionEntry,
-  updateSessionStore,
-} from "../config/sessions.js";
+} from "../config/sessions/paths.js";
+import { updateSessionStore } from "../config/sessions/store.js";
+import type { SessionEntry } from "../config/sessions/types.js";
 import {
   clearAgentRunContext,
   emitAgentEvent,
@@ -191,11 +193,11 @@ export async function agentCommand(
     const skillFilter = resolveAgentSkillsFilter(cfg, sessionAgentId);
     const skillsSnapshot = needsSkillsSnapshot
       ? buildWorkspaceSkillSnapshot(workspaceDir, {
-          config: cfg,
-          eligibility: { remote: getRemoteSkillEligibility() },
-          snapshotVersion: skillsSnapshotVersion,
-          skillFilter,
-        })
+        config: cfg,
+        eligibility: { remote: getRemoteSkillEligibility() },
+        snapshotVersion: skillsSnapshotVersion,
+        skillFilter,
+      })
       : sessionEntry?.skillsSnapshot;
 
     if (skillsSnapshot && sessionStore && sessionKey && needsSkillsSnapshot) {
@@ -234,20 +236,20 @@ export async function agentCommand(
     const agentModelPrimary = resolveAgentModelPrimary(cfg, sessionAgentId);
     const cfgForModelSelection = agentModelPrimary
       ? {
-          ...cfg,
-          agents: {
-            ...cfg.agents,
-            defaults: {
-              ...cfg.agents?.defaults,
-              model: {
-                ...(typeof cfg.agents?.defaults?.model === "object"
-                  ? cfg.agents.defaults.model
-                  : undefined),
-                primary: agentModelPrimary,
-              },
+        ...cfg,
+        agents: {
+          ...cfg.agents,
+          defaults: {
+            ...cfg.agents?.defaults,
+            model: {
+              ...(typeof cfg.agents?.defaults?.model === "object"
+                ? cfg.agents.defaults.model
+                : undefined),
+              primary: agentModelPrimary,
             },
           },
-        }
+        },
+      }
       : cfg;
 
     const { provider: defaultProvider, model: defaultModel } = resolveConfiguredModelRef({

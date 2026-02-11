@@ -3,12 +3,10 @@ import { lookupContextTokens } from "../agents/context.js";
 import { DEFAULT_CONTEXT_TOKENS, DEFAULT_MODEL, DEFAULT_PROVIDER } from "../agents/defaults.js";
 import { resolveConfiguredModelRef } from "../agents/model-selection.js";
 import { loadConfig } from "../config/config.js";
-import {
-  loadSessionStore,
-  resolveMainSessionKey,
-  resolveStorePath,
-  type SessionEntry,
-} from "../config/sessions.js";
+import { loadSessionStore } from "../config/sessions/store.js";
+import { resolveMainSessionKey } from "../config/sessions/main-session.js";
+import { resolveStorePath } from "../config/sessions/paths.js";
+import type { SessionEntry } from "../config/sessions/types.js";
 import { listAgentsForGateway } from "../gateway/session-utils.js";
 import { buildChannelSummary } from "../infra/channel-summary.js";
 import { resolveHeartbeatSummaryForAgent } from "../infra/heartbeat-runner.js";
@@ -179,11 +177,11 @@ export async function getStatusSummary(): Promise<StatusSummary> {
   return {
     linkChannel: linkContext
       ? {
-          id: linkContext.plugin.id,
-          label: linkContext.plugin.meta.label ?? "Channel",
-          linked: linkContext.linked,
-          authAgeMs: linkContext.authAgeMs,
-        }
+        id: linkContext.plugin.id,
+        label: linkContext.plugin.meta.label ?? "Channel",
+        linked: linkContext.linked,
+        authAgeMs: linkContext.authAgeMs,
+      }
       : undefined,
     heartbeat: {
       defaultAgentId: agentList.defaultId,

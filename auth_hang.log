@@ -1,0 +1,23 @@
+npm warn Unknown project config "allow-build-scripts". This will stop working in the next major version of npm.
+DEBUG: Starting AUTH deps check...
+Loading: ./src/agents/auth-profiles/constants.js
+✅ Loaded: ./src/agents/auth-profiles/constants.js
+Loading: ./src/agents/auth-profiles/display.js
+✅ Loaded: ./src/agents/auth-profiles/display.js
+Loading: ./src/agents/auth-profiles/doctor.js
+✅ Loaded: ./src/agents/auth-profiles/doctor.js
+Loading: ./src/agents/auth-profiles/oauth.js
+✅ Loaded: ./src/agents/auth-profiles/oauth.js
+Loading: ./src/agents/auth-profiles/order.js
+✅ Loaded: ./src/agents/auth-profiles/order.js
+Loading: ./src/agents/auth-profiles/paths.js
+✅ Loaded: ./src/agents/auth-profiles/paths.js
+Loading: ./src/agents/auth-profiles/profiles.js
+✅ Loaded: ./src/agents/auth-profiles/profiles.js
+Loading: ./src/agents/auth-profiles/repair.js
+✅ Loaded: ./src/agents/auth-profiles/repair.js
+Loading: ./src/agents/auth-profiles/store.js
+✅ Loaded: ./src/agents/auth-profiles/store.js
+Loading: ./src/agents/auth-profiles/usage.js
+✅ Loaded: ./src/agents/auth-profiles/usage.js
+Done

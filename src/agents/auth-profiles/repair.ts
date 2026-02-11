@@ -1,7 +1,7 @@
 import type { OpenClawConfig } from "../../config/config.js";
 import type { AuthProfileConfig } from "../../config/types.js";
 import type { AuthProfileIdRepairResult, AuthProfileStore } from "./types.js";
-import { normalizeProviderId } from "../model-selection.js";
+import { normalizeProviderId } from "../provider-utils.js";
 import { listProfilesForProvider } from "./profiles.js";
 
 function getProfileSuffix(profileId: string): string {

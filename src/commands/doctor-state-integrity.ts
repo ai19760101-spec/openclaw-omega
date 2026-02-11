@@ -4,13 +4,13 @@ import path from "node:path";
 import type { OpenClawConfig } from "../config/config.js";
 import { resolveDefaultAgentId } from "../agents/agent-scope.js";
 import { resolveOAuthDir, resolveStateDir } from "../config/paths.js";
+import { loadSessionStore } from "../config/sessions/store.js";
+import { resolveMainSessionKey } from "../config/sessions/main-session.js";
 import {
-  loadSessionStore,
-  resolveMainSessionKey,
   resolveSessionFilePath,
   resolveSessionTranscriptsDirForAgent,
   resolveStorePath,
-} from "../config/sessions.js";
+} from "../config/sessions/paths.js";
 import { resolveRequiredHomeDir } from "../infra/home-dir.js";
 import { note } from "../terminal/note.js";
 import { shortenHomePath } from "../utils.js";

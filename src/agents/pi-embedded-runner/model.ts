@@ -4,7 +4,7 @@ import type { ModelDefinitionConfig } from "../../config/types.js";
 import { resolveOpenClawAgentDir } from "../agent-paths.js";
 import { DEFAULT_CONTEXT_TOKENS } from "../defaults.js";
 import { normalizeModelCompat } from "../model-compat.js";
-import { normalizeProviderId } from "../model-selection.js";
+import { normalizeProviderId } from "../provider-utils.js";
 import {
   discoverAuthStorage,
   discoverModels,

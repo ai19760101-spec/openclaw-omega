@@ -1,0 +1,8 @@
+FAILED: ./src/commands/agents.commands.delete.ts
+Error: TIMEOUT
+Code: undefined
+Stack: Error: TIMEOUT
+    at Timeout._onTimeout (C:\Antigravity\dev_artifacts\openclaw_analysis_clone\debug_agents_deps.ts:20:80)
+    at listOnTimeout (node:internal/timers:608:17)
+    at process.processTimers (node:internal/timers:543:7)
+Details: {}

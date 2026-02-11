@@ -1,5 +1,5 @@
 import type { OpenClawConfig } from "./config.js";
-import { normalizeProviderId } from "../agents/model-selection.js";
+import { normalizeProviderId } from "../agents/provider-utils.js";
 import {
   getChannelPluginCatalogEntry,
   listChannelPluginCatalogEntries,

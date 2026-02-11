@@ -7,12 +7,12 @@ import {
 } from "../agents/sandbox.js";
 import { normalizeAnyChannelId } from "../channels/registry.js";
 import { loadConfig } from "../config/config.js";
+import { loadSessionStore } from "../config/sessions/store.js";
 import {
-  loadSessionStore,
   resolveAgentMainSessionKey,
   resolveMainSessionKey,
-  resolveStorePath,
-} from "../config/sessions.js";
+} from "../config/sessions/main-session.js";
+import { resolveStorePath } from "../config/sessions/paths.js";
 import {
   buildAgentMainSessionKey,
   normalizeAgentId,
@@ -97,12 +97,12 @@ function resolveActiveChannel(params: {
   const store = loadSessionStore(storePath);
   const entry = store[params.sessionKey] as
     | {
-        lastChannel?: string;
-        channel?: string;
-        // Legacy keys (pre-rename).
-        lastProvider?: string;
-        provider?: string;
-      }
+      lastChannel?: string;
+      channel?: string;
+      // Legacy keys (pre-rename).
+      lastProvider?: string;
+      provider?: string;
+    }
     | undefined;
   const candidate = (
     entry?.lastChannel ??
