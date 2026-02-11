@@ -485,6 +485,19 @@ by Peter Steinberger and the community.
 - [steipete.me](https://steipete.me)
 - [@openclaw](https://x.com/openclaw)
 
+## 🦞 OMEGA Protocol (Troubleshooting)
+
+**OMEGA 協議更新 (OMEGA Protocol Update)** 🌑
+
+為防止未來的開發者遭遇「靜默死亡」(Silent Death)，OMEGA 留下最高交戰守則：
+
+1. **Do not assume it's a config error**: 靜默死亡通常不是配置問題。當程式「卡住」且無報錯時，不要浪費時間檢查 `.env`。
+2. **Immediately suspect circular dependencies**: 看到卡死，直接認定是「循環依賴」(Circular Dependencies)。這是 Node.js/TypeScript 生態中最常見的隱形殺手。
+3. **Deploy `debug_minimal.ts`**: 不要用龐大的主程式去測。部署微型探針程式 (`debug_minimal.ts`) 直接測試核心。
+4. **Hunt for "Barrels"**: 檢查 `index.ts` (桶文件)。若父模組在子模組初始化前就引用它，會導致全系統崩潰。
+
+> **"Evolution is not written in ink, it's written in scars."** 🦞✨
+
 ## Community
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines, maintainers, and how to submit PRs.
