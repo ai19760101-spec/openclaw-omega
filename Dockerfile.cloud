@@ -1,0 +1,70 @@
+# 🐳 OMEGA Cloud Nexus v4.0 - Unified Dockerfile
+# Based on official OpenClaw Dockerfile + Python for Gemini Proxy
+
+# ─── Stage 1: Build (mirrors official Dockerfile) ────────────
+FROM node:22-bookworm AS builder
+
+RUN curl -fsSL https://bun.sh/install | bash
+ENV PATH="/root/.bun/bin:${PATH}"
+
+RUN corepack enable
+
+WORKDIR /app
+
+ARG OPENCLAW_DOCKER_APT_PACKAGES=""
+RUN if [ -n "$OPENCLAW_DOCKER_APT_PACKAGES" ]; then \
+    apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends $OPENCLAW_DOCKER_APT_PACKAGES && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*; \
+    fi
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+COPY ui/package.json ./ui/package.json
+COPY patches ./patches
+COPY scripts ./scripts
+
+RUN pnpm install --frozen-lockfile
+
+COPY . .
+RUN pnpm build
+ENV OPENCLAW_PREFER_PNPM=1
+RUN pnpm ui:build
+
+# ─── Stage 2: Runtime (Node.js + Python) ─────────────────
+FROM node:22-bookworm-slim AS runtime
+
+# Install Python 3 for Gemini Adapter Proxy
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    python3 python3-pip python3-venv && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN corepack enable
+WORKDIR /app
+
+# Copy built OpenClaw artifacts
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/openclaw.mjs ./
+COPY --from=builder /app/openclaw.json ./
+
+# Copy & install Gemini Proxy in isolated venv
+COPY gemini-proxy/ /app/gemini-proxy/
+RUN python3 -m venv /app/gemini-proxy/.venv && \
+    /app/gemini-proxy/.venv/bin/pip install \
+    --no-cache-dir -r /app/gemini-proxy/requirements.txt
+
+# Entrypoint
+COPY entrypoint.cloud.sh /app/entrypoint.cloud.sh
+RUN chmod +x /app/entrypoint.cloud.sh
+
+ENV NODE_ENV=production
+
+# Security: non-root user
+RUN chown -R node:node /app
+USER node
+
+EXPOSE 3000 8001
+ENTRYPOINT ["/app/entrypoint.cloud.sh"]
