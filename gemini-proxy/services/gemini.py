@@ -14,7 +14,15 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-from schemas.openai import Message
+from dotenv import load_dotenv
+from google import genai
+from google.genai import types
+from pydantic import BaseModel
+from typing import List, Optional, Union, Dict, Any
+
+class Message(BaseModel):
+    role: str
+    content: Union[str, List[Dict[str, Any]], None] = None
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +67,8 @@ MODEL_ALIAS_MAP: dict[str, str] = {
     # Direct Gemini names (pass-through)
     "gemini-pro": "gemini-1.5-pro",
     "gemini-flash": "gemini-2.0-flash",
-    "gemini-3-flash": "gemini-2.0-flash",  # User's naming convention
+    "gemini-3-flash": "gemini-3-flash-preview",  # User's naming convention
+    "gemini-3-pro": "gemini-3-pro-preview",    # User's naming convention
     "gemini-2.0-flash": "gemini-2.0-flash",
     "gemini-2.0-pro": "gemini-2.5-pro", # Upgrade to 2.5
     "gemini-1.5-pro": "gemini-2.5-pro", # Fallback to 2.5
@@ -67,16 +76,20 @@ MODEL_ALIAS_MAP: dict[str, str] = {
     "gemini-3.0": "gemini-3-pro-preview",
     "gemini-3.0-pro": "gemini-3-pro-preview",
     "gemini-3.0-flash": "gemini-3-flash-preview",
-    # Catch-all aliases (OpenClaw sends these)
-    "gpt-4": "gemini-2.5-flash",
-    "gpt-4o": "gemini-2.5-flash",
-    "gpt-3.5-turbo": "gemini-2.5-flash",
+    # Catch-all aliases (OpenClaw sends these if user forces gpt-*)
+    "gpt-4": "gemini-2.0-flash",
+    "gpt-4o": "gemini-2.0-flash",
+    "gpt-3.5-turbo": "gemini-2.0-flash",
     "gpt-5.2-preview-0214": "gemini-2.5-pro",
 }
 
 
 def _resolve_model_name(requested_model: str) -> str:
     """Resolve an incoming model name to a valid Gemini model identifier."""
+    # Strip openai/ prefix if present
+    if requested_model.startswith("openai/"):
+        requested_model = requested_model.replace("openai/", "")
+        
     resolved = MODEL_ALIAS_MAP.get(requested_model, requested_model)
     logger.info("Model mapping: '%s' -> '%s'", requested_model, resolved)
     return resolved

@@ -11,10 +11,13 @@ dockerfile = "Dockerfile.cloud"
 NODE_ENV = "production"
 OPENCLAW_PREFER_PNPM = "1"
 OPENCLAW_STATE_DIR = "/data"
-# 512MB VM: 360MB for Node, ~100MB for Python Proxy, ~52MB OS overhead
-NODE_OPTIONS = "--max-old-space-size=360"
+OPENCLAW_CONFIG_PATH = "/app/openclaw.json"
+# 1024MB VM: 700MB for Node, ~100MB for Python Proxy, ~224MB OS/buffer
+NODE_OPTIONS = "--max-old-space-size=700"
 PROXY_PORT = "8001"
 DEFAULT_GEMINI_MODEL = "gemini-2.0-flash"
+OPENCLAW_LOG_LEVEL = "debug"
+TZ = "Asia/Taipei"
 
 [processes]
 app = "/app/entrypoint.cloud.sh"
@@ -27,10 +30,10 @@ auto_start_machines = true
 min_machines_running = 1
 processes = ["app"]
 
-# Stateless hardening: constrained VM (upgraded from 256 due to OOM)
+# Stateless hardening: 1024MB for Telegram plugin TypeScript compilation
 [[vm]]
 size = "shared-cpu-1x"
-memory = "512mb"
+memory = "1024mb"
 
 [mounts]
 source = "openclaw_data"

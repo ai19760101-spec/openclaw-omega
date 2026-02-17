@@ -23,6 +23,8 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 COPY ui/package.json ./ui/package.json
 COPY patches ./patches
 COPY scripts ./scripts
+COPY packages ./packages
+COPY extensions ./extensions
 
 RUN pnpm install --frozen-lockfile
 
@@ -49,9 +51,11 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/openclaw.mjs ./
 COPY --from=builder /app/openclaw.json ./
+COPY --from=builder /app/extensions ./extensions
 
 # Copy & install Gemini Proxy in isolated venv
 COPY gemini-proxy/ /app/gemini-proxy/
+COPY docs/ /app/docs/
 RUN python3 -m venv /app/gemini-proxy/.venv && \
     /app/gemini-proxy/.venv/bin/pip install \
     --no-cache-dir -r /app/gemini-proxy/requirements.txt

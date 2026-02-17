@@ -100,6 +100,10 @@ export type AgentDefaultsConfig = {
   imageModel?: AgentModelListConfig;
   /** Model catalog with optional aliases (full provider/model keys). */
   models?: Record<string, AgentModelEntryConfig>;
+  /** Optional system prompt override for the agent. */
+  systemPrompt?: string;
+  /** Command aliases map (command -> model ref). */
+  aliases?: Record<string, string>;
   /** Agent working directory (preferred). Used as the default cwd for agent runs. */
   workspace?: string;
   /** Optional repository root for system prompt runtime line (overrides auto-detect). */
