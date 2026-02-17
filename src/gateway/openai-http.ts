@@ -191,7 +191,7 @@ export async function handleOpenAiHttpRequest(
     trustedProxies: opts.trustedProxies,
   });
   if (!authResult.ok) {
-    sendUnauthorized(res);
+    sendUnauthorized(res, req);
     return true;
   }
 
@@ -241,9 +241,9 @@ export async function handleOpenAiHttpRequest(
       const content =
         Array.isArray(payloads) && payloads.length > 0
           ? payloads
-              .map((p) => (typeof p.text === "string" ? p.text : ""))
-              .filter(Boolean)
-              .join("\n\n")
+            .map((p) => (typeof p.text === "string" ? p.text : ""))
+            .filter(Boolean)
+            .join("\n\n")
           : "No response from OpenClaw.";
 
       sendJson(res, 200, {
@@ -370,9 +370,9 @@ export async function handleOpenAiHttpRequest(
         const content =
           Array.isArray(payloads) && payloads.length > 0
             ? payloads
-                .map((p) => (typeof p.text === "string" ? p.text : ""))
-                .filter(Boolean)
-                .join("\n\n")
+              .map((p) => (typeof p.text === "string" ? p.text : ""))
+              .filter(Boolean)
+              .join("\n\n")
             : "No response from OpenClaw.";
 
         sawAssistantDelta = true;

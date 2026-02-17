@@ -1,5 +1,8 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
+import { createSubsystemLogger } from "../logging/subsystem.js";
 import { readJsonBody } from "./hooks.js";
+
+const logSecurity = createSubsystemLogger("gateway/security");
 
 export function sendJson(res: ServerResponse, status: number, body: unknown) {
   res.statusCode = status;
@@ -18,7 +21,13 @@ export function sendMethodNotAllowed(res: ServerResponse, allow = "POST") {
   sendText(res, 405, "Method Not Allowed");
 }
 
-export function sendUnauthorized(res: ServerResponse) {
+export function sendUnauthorized(res: ServerResponse, req?: IncomingMessage) {
+  const clientIp = req?.socket?.remoteAddress || "unknown";
+  logSecurity.warn(`Unauthorized access attempt blocked`, { 
+    clientIp, 
+    path: req?.url,
+    method: req?.method
+  });
   sendJson(res, 401, {
     error: { message: "Unauthorized", type: "unauthorized" },
   });
