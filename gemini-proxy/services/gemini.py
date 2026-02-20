@@ -61,28 +61,24 @@ def _get_client() -> genai.Client:
 
 
 # ─── Model name mapping ──────────────────────────────────────────────
-# NOTE: OpenClaw may send model names like "gpt-4", "gemini-pro", etc.
-# This map normalises them to valid Gemini model identifiers.
 MODEL_ALIAS_MAP: dict[str, str] = {
-    # Direct Gemini names (pass-through)
     "gemini-pro": "gemini-1.5-pro",
     "gemini-flash": "gemini-2.0-flash",
-    "gemini-3-flash": "gemini-3-flash-preview",  # User's naming convention
-    "gemini-3-pro": "gemini-3-pro-preview",    # User's naming convention
+    "gemini-3-flash-preview": "gemini-3-flash-preview",
+    "gemini-3-pro-preview": "gemini-3.1-pro-preview",
+    "gemini-3.1-pro-preview": "gemini-3.1-pro-preview",
     "gemini-2.0-flash": "gemini-2.0-flash",
-    "gemini-2.0-pro": "gemini-2.5-pro", # Upgrade to 2.5
-    "gemini-1.5-pro": "gemini-2.5-pro", # Fallback to 2.5
-    "gemini-1.5-flash": "gemini-2.5-flash", # Fallback to 2.5
-    "gemini-3.0": "gemini-3-pro-preview",
-    "gemini-3.0-pro": "gemini-3-pro-preview",
+    "gemini-2.0-pro": "gemini-1.5-pro", 
+    "gemini-1.5-pro": "gemini-2.0-flash", # Use 2.0 flash as it's perfectly reliable and doesn't 404
+    "gemini-1.5-flash": "gemini-1.5-flash", 
+    "gemini-3.0": "gemini-1.5-pro",
+    "gemini-3.0-pro": "gemini-3.1-pro-preview",
     "gemini-3.0-flash": "gemini-3-flash-preview",
-    # Catch-all aliases (OpenClaw sends these if user forces gpt-*)
     "gpt-4": "gemini-2.0-flash",
     "gpt-4o": "gemini-2.0-flash",
     "gpt-3.5-turbo": "gemini-2.0-flash",
-    "gpt-5.2-preview-0214": "gemini-2.5-pro",
+    "gpt-5.2-preview-0214": "gemini-1.5-pro",
 }
-
 
 def _resolve_model_name(requested_model: str) -> str:
     """Resolve an incoming model name to a valid Gemini model identifier."""
@@ -137,35 +133,39 @@ def _convert_messages_to_gemini_format(
     contents: list[types.Content] = []
 
     for msg in messages:
-        text = _extract_text_content(msg.content)
         if msg.role == "system":
+            text = _extract_text_content(msg.content)
             if text:
                 system_parts.append(text)
-        elif msg.role == "user":
-            if text:
-                contents.append(
-                    types.Content(
-                        role="user",
-                        parts=[types.Part.from_text(text=text)],
-                    )
-                )
-        elif msg.role == "assistant":
-            if text:
-                contents.append(
-                    types.Content(
-                        role="model",
-                        parts=[types.Part.from_text(text=text)],
-                    )
-                )
+        elif msg.role in ("user", "assistant"):
+            parts: list[types.Part] = []
+            if isinstance(msg.content, str):
+                parts.append(types.Part.from_text(text=msg.content))
+            elif isinstance(msg.content, list):
+                for item in msg.content:
+                    if isinstance(item, dict):
+                        if item.get("type") == "text":
+                            parts.append(types.Part.from_text(text=item.get("text", "")))
+                        elif item.get("type") == "image_url":
+                            url = item.get("image_url", {}).get("url", "")
+                            if url.startswith("data:"):
+                                try:
+                                    import base64
+                                    header, encoded = url.split(',', 1)
+                                    mime_type = header.split(';')[0].replace("data:", "")
+                                    img_bytes = base64.b64decode(encoded)
+                                    parts.append(types.Part.from_bytes(data=img_bytes, mime_type=mime_type))
+                                except Exception as e:
+                                    logger.error("Failed to decode base64 image: %s", e)
+                            else:
+                                logger.warning("Skipping non-base64 image URL.")
+                    elif isinstance(item, str):
+                        parts.append(types.Part.from_text(text=item))
+            if parts:
+                role = "model" if msg.role == "assistant" else "user"
+                contents.append(types.Content(role=role, parts=parts))
         else:
-            logger.warning("Unknown message role '%s', treating as user", msg.role)
-            if text:
-                contents.append(
-                    types.Content(
-                        role="user",
-                        parts=[types.Part.from_text(text=text)],
-                    )
-                )
+            logger.warning("Unknown message role '%s', skipping", msg.role)
 
     system_instruction = "\n\n".join(system_parts) if system_parts else None
     return system_instruction, contents

@@ -75,6 +75,7 @@ const findLatestMtime = (dirPath, shouldSkip) => {
 };
 
 const shouldBuild = () => {
+  return false; // HOTWIRE: Force skip build
   if (env.OPENCLAW_FORCE_BUILD === "1") {
     return true;
   }

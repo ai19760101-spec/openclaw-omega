@@ -188,6 +188,8 @@ async def list_models():
     This helps OpenClaw know what models are available.
     """
     models = [
+        {"id": "gemini-3-flash-preview", "object": "model", "owned_by": "google"},
+        {"id": "gemini-3.1-pro-preview", "object": "model", "owned_by": "google"},
         {"id": "gemini-2.0-flash", "object": "model", "owned_by": "google"},
         {"id": "gemini-2.0-pro", "object": "model", "owned_by": "google"},
         {"id": "gemini-1.5-pro", "object": "model", "owned_by": "google"},

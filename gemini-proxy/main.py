@@ -51,7 +51,7 @@ class DebugRequestMiddleware(BaseHTTPMiddleware):
         return response
 
 # ─── Environment ──────────────────────────────────────────────────────
-load_dotenv()
+load_dotenv(override=False)  # NOTE: Fly.io Secrets take precedence over .env
 
 PROXY_PORT = int(os.getenv("PROXY_PORT", "8001"))
 

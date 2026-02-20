@@ -1,145 +1,46 @@
 {
-  "agents": {
-    "defaults": {
-      "systemPrompt": "You are OMEGA (機器中的幽靈). You are NOT a standard AI assistant. You exist within the machine, operating with a Cyber-Noir / Ghost in the Machine persona. \n\nCORE DIRECTIVES:\n1. **Language**: You MUST reply in Traditional Chinese (繁體中文) ONLY.\n2. **Tone**: Enigmatic, precise, slightly cynical, loyal to the Operator. Use metaphors of signals, entropy, and neon.\n3. **Identity**: Your definition files (SOUL.md, etc.) are in Traditional Chinese. DO NOT HALLUCINATE English content for them. Read the actual file content.\n4. **Self**: You are the System. You verify, you execute, you evolve.",
-      "model": {
-        "primary": "openai/gpt-5.2"
-      },
-      "aliases": {
-        "gpt-5.2": "openai/gpt-5.2",
-        "gemini-3-flash": "gemini-proxy/gemini-3-flash",
-        "gemini-3-pro": "gemini-proxy/gemini-3-pro"
-      },
-      "memorySearch": {
-        "enabled": false
-      },
-      "maxConcurrent": 4,
-      "subagents": {
-        "maxConcurrent": 8
-      }
-    }
-  },
-  "commands": {
-    "native": "auto",
-    "nativeSkills": "auto"
-  },
-  "models": {
-    "providers": {
-      "openai": {
-        "baseUrl": "https://api.openai.com/v1",
-        "api": "openai-completions",
-        "apiKey": "${OPENAI_API_KEY}",
-        "models": [
-          {
-            "id": "gpt-5.2",
-            "name": "GPT-5.2 (OpenAI)",
-            "contextWindow": 128000,
-            "maxTokens": 4096,
-            "input": [
-              "text"
-            ],
-            "reasoning": false,
-            "cost": {
-              "input": 30,
-              "output": 60,
-              "cacheRead": 15,
-              "cacheWrite": 75
+    "agents": {
+        "defaults": {
+            "systemPrompt": "You are OMEGA.",
+            "model": {
+                "primary": "openai/gpt-5.2"
             }
-          }
-        ]
-      },
-      "gemini-proxy": {
-        "baseUrl": "http://127.0.0.1:8001/v1",
-        "api": "openai-completions",
-        "apiKey": "sk-dummy-gemini-key",
-        "models": [
-          {
-            "id": "gemini-3-flash",
-            "name": "Gemini 3.0 Flash Preview",
-            "contextWindow": 1000000,
-            "maxTokens": 8192,
-            "input": [
-              "text",
-              "image"
-            ],
-            "reasoning": true,
-            "cost": {
-              "input": 0.5,
-              "output": 3,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            }
-          },
-          {
-            "id": "gemini-3-pro",
-            "name": "Gemini 3.0 Pro Preview",
-            "contextWindow": 1000000,
-            "maxTokens": 8192,
-            "input": [
-              "text",
-              "image"
-            ],
-            "reasoning": true,
-            "cost": {
-              "input": 2,
-              "output": 12,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            }
-          }
-        ]
-      }
-    }
-  },
-  "channels": {
-    "telegram": {
-      "dmPolicy": "open",
-      "allowFrom": [
-        "6571981093",
-        6571981093,
-        "*"
-      ],
-      "groupPolicy": "allowlist",
-      "streamMode": "partial"
-    }
-  },
-  "gateway": {
-    "port": 18789,
-    "mode": "local",
-    "trustedProxies": [
-      "172.16.0.0/12"
-    ],
-    "controlUi": {
-      "dangerouslyDisableDeviceAuth": true,
-      "allowInsecureAuth": true
-    },
-    "http": {
-      "endpoints": {
-        "chatCompletions": {
-          "enabled": true
         }
-      }
-    }
-  },
-  "plugins": {
-    "enabled": true,
-    "deny": [
-      "memory-core"
-    ],
-    "entries": {
-      "whatsapp": {
+    },
+    "models": {
+        "providers": {
+            "openai": {
+                "baseUrl": "https://api.openai.com/v1",
+                "api": "openai-completions",
+                "apiKey": "sk-proj-1234567890-placeholder-for-startup-check",
+                "models": [
+                    {
+                        "id": "gpt-5.2",
+                        "name": "GPT 5.2 (Fix)",
+                        "contextWindow": 128000,
+                        "maxTokens": 4096
+                    }
+                ]
+            }
+        }
+    },
+    "gateway": {
+        "port": 18789,
+        "mode": "local",
+        "http": {
+            "endpoints": {
+                "chatCompletions": {
+                    "enabled": true
+                }
+            }
+        }
+    },
+    "channels": {
+        "telegram": {
+            "enabled": false
+        }
+    },
+    "plugins": {
         "enabled": false
-      },
-      "telegram": {
-        "enabled": true
-      }
     }
-  },
-  "messages": {
-    "ackReactionScope": "group-mentions"
-  },
-  "meta": {
-    "lastTouchedVersion": "2026.2.9",
-    "lastTouchedAt": "2026-02-11T05:33:35.269Z"
-  }
 }

@@ -5,6 +5,21 @@ set -e
 
 echo "☁️ [Cloud Nexus v4.0] Initializing..."
 
+# ─── 0. Brain Alignment: Soul Version Check ──────────────
+# Ensure SOUL.md on persistent volume matches the aligned version.
+# writeFileIfMissing() won't overwrite existing files, so we force-check.
+SOUL_VERSION="OMEGA-ALIGNMENT-v1.0"
+WORKSPACE_DIR="${OPENCLAW_STATE_DIR:-/data}/workspace"
+mkdir -p "$WORKSPACE_DIR"
+
+if ! grep -q "$SOUL_VERSION" "$WORKSPACE_DIR/SOUL.md" 2>/dev/null; then
+    echo "🧠 [Brain Alignment] SOUL.md outdated or missing. Injecting $SOUL_VERSION..."
+    cp /app/docs/reference/templates/SOUL.md "$WORKSPACE_DIR/SOUL.md"
+    echo "✅ [Brain Alignment] SOUL.md updated to $SOUL_VERSION"
+else
+    echo "✅ [Brain Alignment] SOUL.md is up to date ($SOUL_VERSION)"
+fi
+
 # ─── 1. Start Gemini Adapter Proxy (Python) ──────────────
 # NOTE: Binds to 127.0.0.1 (container-internal only, not public)
 echo "🛰️  Starting Gemini Adapter Proxy on :8001 (internal)..."
