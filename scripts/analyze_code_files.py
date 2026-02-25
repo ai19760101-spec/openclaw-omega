@@ -583,7 +583,7 @@ def main():
             print()
             violations = True
         else:
-            print(f"✅ No already-large files grew")
+            print("✅ No already-large files grew")
 
         # Check new duplicate function names
         new_dupes = find_duplicate_regressions(files, root_dir, args.compare_to)
@@ -598,7 +598,7 @@ def main():
             print()
             violations = True
         else:
-            print(f"✅ No new duplicate function names")
+            print("✅ No new duplicate function names")
 
         print()
         if args.strict and violations:
@@ -733,7 +733,7 @@ def main():
     total_lines = sum(count for _, count in files)
 
     print("-" * 60)
-    print(f"\n📈 Summary:")
+    print("\n📈 Summary:")
     print(f"   Total code files: {total_files:,}")
     print(f"   Total lines: {total_lines:,}")
     print(
@@ -749,7 +749,7 @@ def main():
         package_stats[pkg]["files"] += 1
         package_stats[pkg]["lines"] += line_count
 
-    print(f"\n📦 Per-package breakdown:\n")
+    print("\n📦 Per-package breakdown:\n")
     print(f"{'Package':<15} {'Files':>8} {'Lines':>10} {'Avg':>8}")
     print("-" * 45)
 
@@ -792,7 +792,7 @@ def main():
             for path in paths:
                 print(f"       {path.relative_to(root_dir)}")
     else:
-        print(f"\n✅ No duplicate function names")
+        print("\n✅ No duplicate function names")
 
     print()
 

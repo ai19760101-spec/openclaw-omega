@@ -6,7 +6,11 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
-from local_places.google_places import get_place_details, resolve_locations, search_places
+from local_places.google_places import (
+    get_place_details,
+    resolve_locations,
+    search_places,
+)
 from local_places.schemas import (
     LocationResolveRequest,
     LocationResolveResponse,
@@ -17,7 +21,9 @@ from local_places.schemas import (
 
 app = FastAPI(
     title="My API",
-    servers=[{"url": os.getenv("OPENAPI_SERVER_URL", "http://maxims-macbook-air:8000")}],
+    servers=[
+        {"url": os.getenv("OPENAPI_SERVER_URL", "http://maxims-macbook-air:8000")}
+    ],
 )
 logger = logging.getLogger("local_places.validation")
 

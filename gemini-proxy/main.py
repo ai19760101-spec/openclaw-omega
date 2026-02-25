@@ -50,6 +50,7 @@ class DebugRequestMiddleware(BaseHTTPMiddleware):
         )
         return response
 
+
 # ─── Environment ──────────────────────────────────────────────────────
 load_dotenv(override=False)  # NOTE: Fly.io Secrets take precedence over .env
 

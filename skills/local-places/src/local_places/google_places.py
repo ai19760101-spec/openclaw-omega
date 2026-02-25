@@ -59,11 +59,7 @@ _DETAILS_FIELD_MASK = (
 )
 
 _RESOLVE_FIELD_MASK = (
-    "places.id,"
-    "places.displayName,"
-    "places.formattedAddress,"
-    "places.location,"
-    "places.types"
+    "places.id,places.displayName,places.formattedAddress,places.location,places.types"
 )
 
 
@@ -106,7 +102,9 @@ def _request(
                 json=payload,
             )
     except httpx.HTTPError as exc:
-        raise HTTPException(status_code=502, detail="Google Places API unavailable.") from exc
+        raise HTTPException(
+            status_code=502, detail="Google Places API unavailable."
+        ) from exc
 
     return _GoogleResponse(response)
 

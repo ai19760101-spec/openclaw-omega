@@ -14,15 +14,14 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-from dotenv import load_dotenv
-from google import genai
-from google.genai import types
 from pydantic import BaseModel
-from typing import List, Optional, Union, Dict, Any
+from typing import List, Union, Dict, Any
+
 
 class Message(BaseModel):
     role: str
     content: Union[str, List[Dict[str, Any]], None] = None
+
 
 logger = logging.getLogger(__name__)
 
@@ -68,9 +67,9 @@ MODEL_ALIAS_MAP: dict[str, str] = {
     "gemini-3-pro-preview": "gemini-3.1-pro-preview",
     "gemini-3.1-pro-preview": "gemini-3.1-pro-preview",
     "gemini-2.0-flash": "gemini-2.0-flash",
-    "gemini-2.0-pro": "gemini-1.5-pro", 
-    "gemini-1.5-pro": "gemini-2.0-flash", # Use 2.0 flash as it's perfectly reliable and doesn't 404
-    "gemini-1.5-flash": "gemini-1.5-flash", 
+    "gemini-2.0-pro": "gemini-1.5-pro",
+    "gemini-1.5-pro": "gemini-2.0-flash",  # Use 2.0 flash as it's perfectly reliable and doesn't 404
+    "gemini-1.5-flash": "gemini-1.5-flash",
     "gemini-3.0": "gemini-1.5-pro",
     "gemini-3.0-pro": "gemini-3.1-pro-preview",
     "gemini-3.0-flash": "gemini-3-flash-preview",
@@ -80,12 +79,13 @@ MODEL_ALIAS_MAP: dict[str, str] = {
     "gpt-5.2-preview-0214": "gemini-1.5-pro",
 }
 
+
 def _resolve_model_name(requested_model: str) -> str:
     """Resolve an incoming model name to a valid Gemini model identifier."""
     # Strip openai/ prefix if present
     if requested_model.startswith("openai/"):
         requested_model = requested_model.replace("openai/", "")
-        
+
     resolved = MODEL_ALIAS_MAP.get(requested_model, requested_model)
     logger.info("Model mapping: '%s' -> '%s'", requested_model, resolved)
     return resolved
@@ -145,16 +145,25 @@ def _convert_messages_to_gemini_format(
                 for item in msg.content:
                     if isinstance(item, dict):
                         if item.get("type") == "text":
-                            parts.append(types.Part.from_text(text=item.get("text", "")))
+                            parts.append(
+                                types.Part.from_text(text=item.get("text", ""))
+                            )
                         elif item.get("type") == "image_url":
                             url = item.get("image_url", {}).get("url", "")
                             if url.startswith("data:"):
                                 try:
                                     import base64
-                                    header, encoded = url.split(',', 1)
-                                    mime_type = header.split(';')[0].replace("data:", "")
+
+                                    header, encoded = url.split(",", 1)
+                                    mime_type = header.split(";")[0].replace(
+                                        "data:", ""
+                                    )
                                     img_bytes = base64.b64decode(encoded)
-                                    parts.append(types.Part.from_bytes(data=img_bytes, mime_type=mime_type))
+                                    parts.append(
+                                        types.Part.from_bytes(
+                                            data=img_bytes, mime_type=mime_type
+                                        )
+                                    )
                                 except Exception as e:
                                     logger.error("Failed to decode base64 image: %s", e)
                             else:
